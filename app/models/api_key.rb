@@ -1,5 +1,5 @@
 class ApiKey
-  def initialize
-    @api_key = "jgn983hy48thw9begh98h4539h4"
-  end 
+  def key
+    SecureRandom.urlsafe_base64.to_s
+  end
 end
