@@ -10,7 +10,6 @@ describe "Forecasts API" do
     expect(data[:city]).to eq("Denver")
     expect(data[:state]).to eq("CO")
     expect(data[:country]).to eq("United States")
-    expect(data[:image]).to eq("https://images.unsplash.com/photo-1546156929-a4c0ac411f47?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjY2NTExfQ")
     expect(data[:weather][:latitude]).to eq(39.7392358)
     expect(data[:weather][:longitude]).to eq(-104.990251)
     expect(data[:weather][:currently][:time]).to be_a(Integer)

@@ -11,7 +11,6 @@ class Forecast
     lat = service.lat_long[:lat]
     long = service.lat_long[:lng]
     @weather = weather_data(lat, long)
-    @image = image_url(@city)
   end
 
   def location_data(location)
@@ -22,7 +21,4 @@ class Forecast
     DarkskyService.new.fetch_forecast(lat, long)
   end
 
-  def image_url(city)
-    UnsplashService.new.city_image(city)
-  end
 end
