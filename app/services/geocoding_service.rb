@@ -1,19 +1,19 @@
 class GeocodingService
+  attr_reader :country_name, :state_name, :city_name, :lat_long
 
-  def country_name(location)
-    forecast(location)[:results][0][:address_components][3][:long_name]
+  def initialize(location)
+    set_location_data(location)
   end
 
-  def state_name(location)
-    forecast(location)[:results][0][:address_components][2][:short_name]
+  def set_location_data(location)
+    @country_name = geo_info(location)[3][:long_name]
+    @state_name = geo_info(location)[2][:short_name]
+    @city_name = geo_info(location)[0][:short_name]
+    @lat_long = forecast(location)[:results][0][:geometry][:location]
   end
 
-  def city_name(location)
-    forecast(location)[:results][0][:address_components][0][:short_name]
-  end
-
-  def lat_long(location)
-    forecast(location)[:results][0][:geometry][:location]
+  def geo_info(location)
+    forecast(location)[:results][0][:address_components]
   end
 
   def forecast(location)
