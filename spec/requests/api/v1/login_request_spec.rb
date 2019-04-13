@@ -1,9 +1,8 @@
 require 'rails_helper'
 
 describe "Login API" do
-  User.create(email: "whatever@example.com", password: "password")
-  
   it "returns an api_key" do
+    User.create(email: "whatever@example.com", password: "password")
     post "/api/v1/sessions", params: {
                                         email: "whatever@example.com",
                                         password: "password"
