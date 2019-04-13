@@ -1,14 +1,14 @@
 class GeocodingService
-  attr_reader :country_name, :state_name, :city_name, :lat_long
+  attr_reader :country, :state, :city, :lat_long
 
   def initialize(location)
     set_location_data(location)
   end
 
   def set_location_data(location)
-    @country_name = geo_info(location)[3][:long_name]
-    @state_name = geo_info(location)[2][:short_name]
-    @city_name = geo_info(location)[0][:short_name]
+    @country = geo_info(location)[3][:long_name]
+    @state = geo_info(location)[2][:short_name]
+    @city = geo_info(location)[0][:short_name]
     @lat_long = forecast(location)[:results][0][:geometry][:location]
   end
 

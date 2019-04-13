@@ -4,9 +4,9 @@ describe GeocodingService do
   it "gets lat and long" do
     denver_response = GeocodingService.new("Denver CO")
     lat_long = denver_response.lat_long
-    city_name = denver_response.city_name
-    state_name = denver_response.state_name
-    country_name = denver_response.country_name
+    city_name = denver_response.city
+    state_name = denver_response.state
+    country_name = denver_response.countr
 
     expect(lat_long[:lat]).to eq(39.7392358)
     expect(lat_long[:lng]).to eq(-104.990251)
@@ -16,9 +16,9 @@ describe GeocodingService do
 
     portland_response = GeocodingService.new("Portland OR")
     lat_long = portland_response.lat_long
-    city_name = portland_response.city_name
-    state_name = portland_response.state_name
-    country_name = portland_response.country_name
+    city_name = portland_response.city
+    state_name = portland_response.state
+    country_name = portland_response.country
 
     expect(lat_long[:lat]).to eq(45.5154586)
     expect(lat_long[:lng]).to eq(-122.6793461)
