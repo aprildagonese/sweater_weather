@@ -1,8 +1,23 @@
 class GeocodingService
 
-  def fetch_lat_long(city, state)
-    url = "?address=#{city},#{state}"
-    json(url)[:results][0][:geometry][:location]
+  def country_name(location)
+    forecast(location)[:results][0][:address_components][3][:long_name]
+  end
+
+  def state_name(location)
+    forecast(location)[:results][0][:address_components][2][:short_name]
+  end
+
+  def city_name(location)
+    forecast(location)[:results][0][:address_components][0][:short_name]
+  end
+
+  def lat_long(location)
+    forecast(location)[:results][0][:geometry][:location]
+  end
+
+  def forecast(location)
+    @forecast_data ||= json("?address=#{location}")
   end
 
   def json(url)
@@ -19,7 +34,7 @@ class GeocodingService
 end
 
 
-# def fetch_forecast(city, state)
+# def fetch_forecast(location)
 #   url = "#{ENV['DARKSKY_SECRET_KEY']}/#{lat},#{long}"
 #   json(url)
 # end
