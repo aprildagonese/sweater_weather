@@ -4,16 +4,25 @@ class Forecast
   end
 
   def forecast_data(location)
-    service = GeocodingService.new(location)
+    service = location_data(location)
     @city = service.city
     @state = service.state
     @country = service.country
     lat = service.lat_long[:lat]
     long = service.lat_long[:lng]
     @weather = weather_data(lat, long)
+    @image = image_url(@city)
+  end
+
+  def location_data(location)
+    GeocodingService.new(location)
   end
 
   def weather_data(lat, long)
     DarkskyService.new.fetch_forecast(lat, long)
+  end
+
+  def image_url(city)
+    UnsplashService.new.city_image(city)
   end
 end
