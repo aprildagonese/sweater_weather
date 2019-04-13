@@ -6,7 +6,7 @@ describe GeocodingService do
     lat_long = denver_response.lat_long
     city_name = denver_response.city
     state_name = denver_response.state
-    country_name = denver_response.countr
+    country_name = denver_response.country
 
     expect(lat_long[:lat]).to eq(39.7392358)
     expect(lat_long[:lng]).to eq(-104.990251)
