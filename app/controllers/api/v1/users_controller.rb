@@ -1,4 +1,4 @@
-class Api::V1::UsersController < ApplicationController
+class Api::V1::UsersController < ApiController
   def create
     user = User.new(user_params)
     if user.save && user.update_attributes(api_key: ApiKey.new.key)

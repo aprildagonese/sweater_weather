@@ -1,4 +1,4 @@
-class Api::V1::UserCitiesController < ApplicationController
+class Api::V1::UserCitiesController < ApiController
   def create
     if UserCity.log_favorite(params[:location], params[:api_key])
       render status: 201, json: favorite_saved
