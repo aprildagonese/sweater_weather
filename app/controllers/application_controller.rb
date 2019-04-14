@@ -9,5 +9,8 @@ class ApplicationController < ActionController::Base
     { error: "API key required" }
   end
 
+  def favorite_saved
+    { success: "City stored as favorite"}
+  end
 
 end
