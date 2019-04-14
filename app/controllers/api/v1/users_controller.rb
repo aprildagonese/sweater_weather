@@ -4,7 +4,7 @@ class Api::V1::UsersController < ApplicationController
     if user.save && user.update_attributes(api_key: ApiKey.new.key)
       render status: 201, json: {api_key: user.api_key}
     else
-      render status: 409, json: {error: "User could not be saved with those credentials."}
+      render status: 409, json: credentials_conflict
     end
   end
 

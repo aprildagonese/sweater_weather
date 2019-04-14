@@ -31,13 +31,4 @@ class UserCity < ApplicationRecord
     end
   end
 
-  # def remove
-  #   user = self.user
-  #   if self.destroy
-  #     Favorites.generate(user.user_cities)
-  #   else
-  #     "Favorite could not be deleted at this time."
-  #   end
-  # end
-
 end
