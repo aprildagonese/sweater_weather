@@ -9,7 +9,7 @@ describe "Users API" do
     expect(response).to be_successful
     expect(response.status).to eq(201)
     body = JSON.parse(response.body, symbolize_names: true)
-    expect(body[:api_key]).to eq("jgn983hy48thw9begh98h4539h4")
+    expect(body[:api_key]).to be_a(String)
 
     #user tries to register with non-unique credentials
     post "/api/v1/users", params: {user: {email: "whatever@example.com",
