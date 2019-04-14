@@ -47,12 +47,15 @@ describe "Favorites API" do
 
     cities = JSON.parse(response.body, symbolize_names: true)
 
-    expect(cities[0][:location]).to eq("Denver, CO")
-    expect(cities[0][:current_weather]).to be_a(Hash)
-    expect(cities[1][:location]).to eq("Portland, OR")
-    expect(cities[1][:current_weather]).to be_a(Hash)
-    expect(cities[2][:location]).to eq("Seattle, WA")
-    expect(cities[2][:current_weather]).to be_a(Hash)
+    expect(cities[0][:city]).to eq("Denver")
+    expect(cities[0][:state]).to eq("CO")
+    expect(cities[0][:weather][:currently][:summary]).to be_a(String)
+    expect(cities[1][:city]).to eq("Portland")
+    expect(cities[1][:state]).to eq("OR")
+    expect(cities[1][:weather][:currently][:summary]).to be_a(String)
+    expect(cities[2][:city]).to eq("Seattle")
+    expect(cities[2][:state]).to eq("WA")
+    expect(cities[2][:weather][:currently][:summary]).to be_a(String)
   end
 
   it "returns a 401 with the incorrect or missing API key" do
