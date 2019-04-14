@@ -1,5 +1,4 @@
 class ApiController < ActionController::API
-  protect_from_forgery with: :null_session
   helper_method :current_user
 
   def unauthorized
