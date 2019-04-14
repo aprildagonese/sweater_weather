@@ -1,6 +1,6 @@
 class Forecast
   attr_reader :weather
-  
+
   def initialize(location)
     forecast_data(location)
   end

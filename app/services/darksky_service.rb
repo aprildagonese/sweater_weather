@@ -6,7 +6,7 @@ class DarkskyService
   end
 
   def json(url)
-    response = conn.get(url)
+    response = Rails.cache.fetch(url) { conn.get(url) }
     JSON.parse(response.body, symbolize_names: true)
   end
 
