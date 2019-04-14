@@ -5,7 +5,7 @@ class Api::V1::SessionsController < ApplicationController
       session[:user_id] = user.id
       render status: 200, json: {api_key: user.api_key}
     else
-      render status: 403, json: {error: "Invalid credentials."}
+      render status: 403, json: invalid_credentials
     end
   end
 
