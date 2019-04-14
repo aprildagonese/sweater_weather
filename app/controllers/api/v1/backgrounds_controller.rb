@@ -1,6 +1,7 @@
 class Api::V1::BackgroundsController < ApplicationController
   def show
-    background = Background.new(params[:location])
+    location = params[:location]
+    background = Rails.cache.fetch(location) { Background.new(location) }
     render json: background
   end
 end
