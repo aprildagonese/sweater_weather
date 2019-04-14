@@ -46,6 +46,7 @@ describe "Favorites API" do
     expect(response.status).to eq(200)
 
     cities = JSON.parse(response.body, symbolize_names: true)
+
     expect(cities[0][:location]).to eq("Denver, CO")
     expect(cities[0][:current_weather]).to be_a(Hash)
     expect(cities[1][:location]).to eq("Portland, OR")
