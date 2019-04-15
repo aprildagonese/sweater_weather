@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe "Forecasts API" do
   it "returns forecast info" do
-    get `/api/v1/antipode?loc=hongkong`
+    get '/api/v1/antipode?loc=hongkong'
 
     expect(response).to be_successful
     data = JSON.parse(response.body, symbolize_names: true)

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       post 'favorites', to: 'user_cities#create'
       get 'favorites', to: 'user_cities#index'
       delete 'favorites', to: 'user_cities#destroy'
+      get 'antipode', to: 'antipodes#show'
     end
   end
 end
