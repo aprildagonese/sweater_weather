@@ -1,12 +1,13 @@
-class Forecast
+class ForecastFacade
   attr_reader :weather
 
   def initialize(location)
-    forecast_data(location)
+    @_location = location
+    forecast_data
   end
 
-  def forecast_data(location)
-    data = location_data(location)
+  def forecast_data
+    data = location_data
     @city = data.city
     @state = data.state
     @country = data.country
@@ -15,7 +16,7 @@ class Forecast
     @weather = weather_data(lat, long)
   end
 
-  def location_data(location)
+  def location_data
     GeocodeFacade.new(location)
   end
 
@@ -23,4 +24,9 @@ class Forecast
     DarkskyService.new.fetch_forecast(lat, long)
   end
 
+  private
+
+    def location
+      @_location
+    end
 end

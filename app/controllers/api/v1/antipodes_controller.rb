@@ -1,5 +1,5 @@
 class Api::V1::AntipodesController < ApiController
   def show
-    render json: AntipodeSerializer.new(params[:loc]).data
+    render json: AntipodeSerializer.new(AntipodeRequestFacade.new(params[:loc]))
   end
 end

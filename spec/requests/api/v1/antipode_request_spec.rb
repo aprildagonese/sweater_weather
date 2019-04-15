@@ -8,11 +8,11 @@ describe "Forecasts API" do
 
     data = JSON.parse(response.body, symbolize_names: true)
 
-    expect(data[:data][0][:id]).to eq("1")
-    expect(data[:data][0][:type]).to eq("antipode")
-    expect(data[:data][0][:attributes]).to be_a(Hash)
-    expect(data[:data][0][:attributes][:location_name]).to be_a(String)
-    expect(data[:data][0][:attributes][:forecast]).to be_a(Hash)
-    expect(data[:data][0][:attributes][:search_location]).to eq("Hong Kong")
+    expect(data[:data][:id]).to eq("1")
+    expect(data[:data][:type]).to eq("antipode")
+    expect(data[:data][:attributes]).to be_a(Hash)
+    expect(data[:data][:attributes][:location_name]).to be_a(String)
+    expect(data[:data][:attributes][:forecast]).to be_a(Hash)
+    expect(data[:data][:attributes][:search_location]).to eq("Hong Kong")
   end
 end
