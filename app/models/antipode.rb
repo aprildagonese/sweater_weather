@@ -1,7 +1,6 @@
 class Antipode
   def initialize(location)
     @_location = location
-    prettify_data
   end
 
   def prettify_data
@@ -13,12 +12,14 @@ class Antipode
                 "attributes": {
                     "location_name": "#{antipode_name}",
                     "forecast": antipode_forecast,
-                "search_location": "Hong Kong"
+                "search_location": "#{location_name}"
                 }
             }
         ]
     }
   end
+
+  private
 
   def location_lat_long
     geo_service.lat_long
@@ -56,8 +57,6 @@ class Antipode
       "current_temperature": "#{forecast[:currently][:temperature]}",
     }
   end
-
-  private
 
   def location
     @_location

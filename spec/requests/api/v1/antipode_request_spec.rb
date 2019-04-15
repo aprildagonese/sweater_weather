@@ -7,13 +7,13 @@ describe "Forecasts API" do
     expect(response).to be_successful
 
     data = JSON.parse(response.body, symbolize_names: true)
-    binding.pry
-    expect(data[:data][0][:id]).to eq(1)
+
+    expect(data[:data][0][:id]).to eq("1")
     expect(data[:data][0][:type]).to eq("antipode")
     expect(data[:data][0][:attributes]).to be_a(Hash)
-    expect(data[:data][0][:attributes][:location_name]).to be_a(Hash)
+    expect(data[:data][0][:attributes][:location_name]).to be_a(String)
     expect(data[:data][0][:attributes][:forecast]).to be_a(Hash)
-    expect(data[:data][0][:search_location]).to be_a("Hong Kong")
+    expect(data[:data][0][:search_location]).to be("Hong Kong")
   end
 end
 
