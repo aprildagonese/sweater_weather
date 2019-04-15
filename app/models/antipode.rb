@@ -10,9 +10,9 @@ class Antipode
                 "id": "1",
                 "type": "antipode",
                 "attributes": {
-                    "location_name": "Antipode City Name",
+                    "location_name": "#{antipode_name}",
                     "forecast": {
-                        "summary": "Mostly Cloudy,
+                        "summary": "Mostly Cloudy",
                         "current_temperature": "72",
                     				},
                 "search_location": "Hong Kong"
@@ -39,8 +39,19 @@ class Antipode
   def antipode_long
     @antipode_data[:data][:attributes][:long]
   end
-  
+
   def reverse_geocode(antipode_lat, antipode_long)
-    GeocodingService.new.reverse_geocode(antipode_lat, antipode_long)
+    @reverse_geocode ||= GeocodingService.new.reverse_geocode(antipode_lat, antipode_long)
+  end
+
+  def antipode_name
+    @reverse_geocode.long_name
+  end
+
+  def antipode_lat_long
+    @reverse_geocode.lat_long
+  end
+
+  def forecast
   end
 end

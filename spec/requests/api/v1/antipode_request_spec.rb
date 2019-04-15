@@ -5,6 +5,7 @@ describe "Forecasts API" do
     get '/api/v1/antipode?loc=hongkong'
 
     expect(response).to be_successful
+
     data = JSON.parse(response.body, symbolize_names: true)
     expect(data[:data][0][:id]).to eq(1)
     expect(data[:data][0][:type]).to eq("antipode")

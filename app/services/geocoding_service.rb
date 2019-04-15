@@ -13,17 +13,17 @@ class GeocodingService
     @country = geo_info(location)[3][:long_name]
     @state = geo_info(location)[2][:short_name]
     @city = geo_info(location)[0][:short_name]
-    @lat_long = forecast(location)[:results][0][:geometry][:location]
+    @lat_long = location(location)[:results][0][:geometry][:location]
   end
 
   def reverse_location_data(lat, long)
     data = reverse_location(lat, long)
-    @lat_long = forecast(location)[:results][0][:geometry][:location]
-    @long_name = forecast(location)[:results][0][:address_components][0][:long_name]
+    @lat_long = data[:results][0][:geometry][:location]
+    @long_name = data[:results][0][:address_components][0][:long_name]
   end
 
   def geo_info(location)
-    forecast(location)[:results][0][:address_components]
+    location(location)[:results][0][:address_components]
   end
 
   def location(location)

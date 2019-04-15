@@ -2,7 +2,8 @@ require 'rails_helper'
 
 describe GeocodingService do
   it "gets lat and long" do
-    denver_response = GeocodingService.new.geocode("Denver CO")
+    denver_response = GeocodingService.new
+    denver_response.geocode("Denver CO")
     lat_long = denver_response.lat_long
     city_name = denver_response.city
     state_name = denver_response.state
@@ -14,7 +15,8 @@ describe GeocodingService do
     expect(state_name).to eq("CO")
     expect(country_name).to eq("United States")
 
-    portland_response = GeocodingService.new.geocode("Portland OR")
+    portland_response = GeocodingService.new
+    portland_response.geocode("Portland OR")
     lat_long = portland_response.lat_long
     city_name = portland_response.city
     state_name = portland_response.state
