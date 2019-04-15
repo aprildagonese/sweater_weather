@@ -6,19 +6,17 @@ class Forecast
   end
 
   def forecast_data(location)
-    service = location_data(location)
-    @city = service.city
-    @state = service.state
-    @country = service.country
-    lat = service.lat_long[:lat]
-    long = service.lat_long[:lng]
+    data = location_data(location)
+    @city = data.city
+    @state = data.state
+    @country = data.country
+    lat = data.lat
+    long = data.long
     @weather = weather_data(lat, long)
   end
 
   def location_data(location)
-    service = GeocodingService.new
-    service.geocode(location)
-    service
+    GeocodeFacade.new(location)
   end
 
   def weather_data(lat, long)

@@ -4,10 +4,8 @@ class Background
   end
 
   def geocode_city(location)
-    service = GeocodingService.new
-    service.geocode(location)
-    city = service.city
-    image_url(city)
+    service = GeocodeFacade.new(location)
+    image_url(service.city)
   end
 
   def image_url(city)
