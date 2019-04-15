@@ -1,8 +1,12 @@
 class Antipode
   def initialize(location)
-    lat_long = GeocodingService.new(location).lat_long
-    antipode = AmypodeService.new(lat_long[:lat], lat_long[:lng])
-    binding.pry
+    geocode = GeocodingService.new
+    geocode.geocode(location)
+    lat_long = geocode.lat_long
+    antipode_data = AmypodeService.new.fetch_antipode(lat_long[:lat], lat_long[:lng])
+    lat = antipode_data[:data][:attributes][:lat]
+    long = antipode_data[:data][:attributes][:long]
+    antipode_location = GeocodingService.new.reverse_geocode(lat, long)
   end
 end
 

@@ -1,7 +1,11 @@
 class GeocodingService
   attr_reader :country, :state, :city, :lat_long
 
-  def initialize(location)
+  def reverse_geocode(lat, long)
+    location_name(lat, long)
+  end
+
+  def geocode(location)
     set_location_data(location)
   end
 
@@ -23,6 +27,10 @@ class GeocodingService
 
   def forecast(location)
     @forecast_data ||= json("?address=#{location}")
+  end
+
+  def location_data(lat, long)
+    @location_name ||= json("?latlng=#{lat},#{long}")
   end
 
   def json(url)

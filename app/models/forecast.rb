@@ -16,7 +16,7 @@ class Forecast
   end
 
   def location_data(location)
-    GeocodingService.new(location)
+    GeocodingService.new.geocode(location)
   end
 
   def weather_data(lat, long)

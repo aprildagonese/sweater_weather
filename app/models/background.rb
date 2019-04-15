@@ -4,7 +4,7 @@ class Background
   end
 
   def geocode_city(location)
-    city = GeocodingService.new(location).city
+    city = GeocodingService.new.geocode(location).city
     image_url(city)
   end
 
