@@ -24,6 +24,11 @@ class Antipode
     geo_service.lat_long
   end
 
+  def location_name
+    binding.pry
+    geo_service
+  end
+
   def antipode_data
     @antipode_data ||= AmypodeService.new.fetch_antipode(location_lat_long[:lat], location_lat_long[:lng])
   end
@@ -37,22 +42,18 @@ class Antipode
   end
 
   def reverse_geocode
-    @reverse_geocode ||= GeocodingService.new.reverse_geocode(antipode_lat, antipode_long)
+    reverse_geo_service
   end
 
   def antipode_name
-    binding.pry
     reverse_geocode.long_name
   end
 
-  def antipode_lat_long
-    reverse_geocode.lat_long
-  end
-
   def antipode_forecast
+    forecast = DarkskyService.new.fetch_forecast(antipode_lat, antipode_long)
     {
-      "summary": "Mostly Cloudy",
-      "current_temperature": "72",
+      "summary": "#{forecast[:hourly][:summary]}",
+      "current_temperature": "#{forecast[:currently][:temperature]}",
     }
   end
 
@@ -69,7 +70,9 @@ class Antipode
   end
 
   def reverse_geo_service
-
+    @reverse_geocode ||= GeocodingService.new
+    @reverse_geocode.reverse_geocode(antipode_lat, antipode_long)
+    @reverse_geocode
   end
 
 end

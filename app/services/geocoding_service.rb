@@ -1,5 +1,5 @@
 class GeocodingService
-  attr_reader :country, :state, :city, :lat_long
+  attr_reader :country, :state, :city, :lat_long, :long_name
 
   def reverse_geocode(lat, long)
     reverse_location_data(lat, long)
