@@ -20,15 +20,8 @@ class Antipode
     }
   end
 
-  def service
-    @geo_service ||= GeocodingService.new
-    @geo_service.geocode(location)
-    @geo_service
-  end
-
   def location_lat_long
-    binding.pry
-    service.lat_long
+    geo_service.lat_long
   end
 
   def antipode_data
@@ -48,6 +41,7 @@ class Antipode
   end
 
   def antipode_name
+    binding.pry
     reverse_geocode.long_name
   end
 
@@ -63,9 +57,19 @@ class Antipode
   end
 
   private
-  attr_reader :location
 
   def location
     @_location
   end
+
+  def geo_service
+    @geo_service ||= GeocodingService.new
+    @geo_service.geocode(location)
+    @geo_service
+  end
+
+  def reverse_geo_service
+
+  end
+
 end
