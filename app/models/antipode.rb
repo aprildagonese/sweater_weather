@@ -26,8 +26,7 @@ class Antipode
   end
 
   def location_name
-    binding.pry
-    geo_service
+    geo_service.long_name
   end
 
   def antipode_data
