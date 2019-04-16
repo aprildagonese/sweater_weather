@@ -1,6 +1,9 @@
 class BackgroundFacade
+  attr_reader :id, :image
+
   def initialize(location)
     @_location = location
+    @id = 1
     geocode_city
   end
 

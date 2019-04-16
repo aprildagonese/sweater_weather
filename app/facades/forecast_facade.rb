@@ -1,5 +1,5 @@
 class ForecastFacade
-  attr_reader :weather
+  attr_reader :weather, :id, :city, :state, :country
 
   def initialize(location)
     @_location = location
