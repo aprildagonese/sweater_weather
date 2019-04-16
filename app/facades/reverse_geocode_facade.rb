@@ -9,7 +9,7 @@ class ReverseGeocodeFacade
   def reverse_location_data
     data = reverse_location
     @lat = data[:results][0][:geometry][:location][:lat]
-    @lat = data[:results][0][:geometry][:location][:lng]
+    @long = data[:results][0][:geometry][:location][:lng]
     @name = data[:results][0][:address_components][2][:long_name]
   end
 

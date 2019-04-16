@@ -1,5 +1,4 @@
 class ApiController < ActionController::API
-  helper_method :current_user
 
   def unauthorized
     { error: "API key required" }
