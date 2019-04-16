@@ -10,10 +10,10 @@ class ApiController < ActionController::API
   end
 
   def invalid_credentials
-    {error: "Invalid credentials."}
+    { error: "Invalid credentials." }
   end
 
   def credentials_conflict
-    {error: "User could not be saved with those credentials."}
+    { error: "User could not be saved with those credentials." }
   end
 end
