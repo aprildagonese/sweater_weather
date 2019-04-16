@@ -4,19 +4,22 @@ class BackgroundFacade
   def initialize(location)
     @_location = location
     @id = 1
-    geocode_city
+    @image = city_image
   end
 
-  def geocode_city
-    service = GeocodeFacade.new(location)
-    image_url(service.city)
+  def city_image
+    Rails.cache.fetch("image-#{location}") { image_url(geocode_service.city) }
+  end
+
+  def geocode_service
+    Rails.cache.fetch("geocode-#{location}") { GeocodeFacade.new(location) }
   end
 
   def image_url(city)
-    @image = unsplash.city_image(city)
+    unsplash_service.city_image(city)
   end
 
-  def unsplash
+  def unsplash_service
     UnsplashService.new
   end
 

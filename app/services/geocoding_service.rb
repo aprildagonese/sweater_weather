@@ -1,4 +1,12 @@
 class GeocodingService
+  def geocode(location)
+    json("?address=#{location}")
+  end
+
+  def reverse_geocode(lat, long)
+    json("?latlng=#{lat},#{long}")
+  end
+
   def json(url)
     response = conn.get(url)
     JSON.parse(response.body, symbolize_names: true)

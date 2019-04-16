@@ -6,7 +6,7 @@ class AntipodeRequestFacade
     @id = 1
     @type = "antipode"
     @location_name = reverse_geocode.name
-    @forecast = weather.antipode_forecast
+    @forecast = forecast
     @search_location = geocode.long_name
   end
 
@@ -18,7 +18,7 @@ class AntipodeRequestFacade
     AntipodeFacade.new(geocode.lat, geocode.long)
   end
 
-  def weather
+  def forecast
     AntipodeForecastFacade.new(antipode.new_lat, antipode.new_long)
   end
 

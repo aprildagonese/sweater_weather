@@ -25,7 +25,7 @@ class GeocodeFacade
   end
 
   def json
-    @location ||= service.json("?address=#{location}")
+    Rails.cache.fetch("geocode-service-#{location}") { service.geocode(location) }
   end
 
   def service

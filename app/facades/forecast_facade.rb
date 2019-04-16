@@ -7,21 +7,24 @@ class ForecastFacade
   end
 
   def forecast_data
-    data = location_data
-    @city = data.city
-    @state = data.state
-    @country = data.country
-    lat = data.lat
-    long = data.long
-    @weather = weather_data(lat, long)
+    @city = geocode_facade.city
+    @state = geocode_facade.state
+    @country = geocode_facade.country
+    lat = geocode_facade.lat
+    long = geocode_facade.long
+    @weather = forecast(lat, long)
   end
 
-  def location_data
-    GeocodeFacade.new(location)
+  def geocode_facade
+    Rails.cache.fetch("geocode-#{location}") { GeocodeFacade.new(location) }
   end
 
-  def weather_data(lat, long)
-    DarkskyService.new.fetch_forecast(lat, long)
+  def forecast(lat, long)
+    Rails.cache.fetch("forecast-#{lat},#{long}", expires_in: 1.hour) { service.fetch_forecast(lat, long) }
+  end
+
+  def service
+    DarkskyService.new
   end
 
   private

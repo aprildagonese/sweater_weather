@@ -14,7 +14,7 @@ class ReverseGeocodeFacade
   end
 
   def reverse_location
-    @reverse_location ||= service.json("?latlng=#{lat},#{long}")
+    Rails.cache.fetch("reverse-geocode-service-#{lat},#{long}") { service.reverse_geocode(lat, long) }
   end
 
   def service

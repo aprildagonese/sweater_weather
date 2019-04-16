@@ -2,17 +2,12 @@ class AntipodeForecastFacade
   def initialize(lat, long)
     @_lat = lat
     @_long = long
-  end
-
-  def antipode_forecast
-    {
-      "summary": "#{forecast[:hourly][:summary]}",
-      "current_temperature": "#{forecast[:currently][:temperature]}",
-    }
+    @summary = "#{forecast[:hourly][:summary]}"
+    @current_temperature = "#{forecast[:currently][:temperature]}"
   end
 
   def forecast
-    service.fetch_forecast(lat, long)
+    Rails.cache.fetch("forecast-#{lat},#{long}", expires_in: 1.hour) { service.fetch_forecast(lat, long) }
   end
 
   def service

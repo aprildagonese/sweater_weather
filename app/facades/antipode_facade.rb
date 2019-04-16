@@ -13,7 +13,7 @@ class AntipodeFacade
   end
 
   def antipode_data
-    @antipode_data ||= service.fetch_antipode(lat, long)
+    Rails.cache.fetch("antipode-#{lat},#{long}") { service.fetch_antipode(lat, long) }
   end
 
   def service
