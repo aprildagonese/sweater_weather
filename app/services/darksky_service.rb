@@ -1,8 +1,17 @@
 class DarkskyService
 
-  def fetch_forecast(lat, long)
+  def initialize(lat, long)
+    @lat = lat
+    @long = long
+  end
+
+  def fetch_forecast
     url = "#{ENV['DARKSKY_SECRET_KEY']}/#{lat},#{long}"
     json(url)
+  end
+
+  def self.fetch_forecast(lat, long)
+    new(lat, long).fetch_forecast
   end
 
   def json(url)
@@ -15,4 +24,8 @@ class DarkskyService
       f.adapter Faraday.default_adapter
     end
   end
+
+  private
+    attr_reader :lat, :long
+
 end

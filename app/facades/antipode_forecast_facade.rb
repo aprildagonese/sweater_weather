@@ -7,11 +7,11 @@ class AntipodeForecastFacade
   end
 
   def forecast
-    Rails.cache.fetch("forecast-#{lat},#{long}", expires_in: 1.hour) { service.fetch_forecast(lat, long) }
+    Rails.cache.fetch("forecast-#{lat},#{long}", expires_in: 1.hour) { service.fetch_forecast }
   end
 
   def service
-    DarkskyService.new
+    DarkskyService.new(lat, long)
   end
 
   private
